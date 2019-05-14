@@ -11,14 +11,14 @@ import {Http, Response} from '@angular/http';
 export class ProductService {
 
   private _albumUrl = '../assets/album.json';
-  private _productUrl = '../assets/products.json';
+  private _productsUrl = '../assets/products.json';
   constructor(private _http: HttpClient) { }
 
   getAlbum(id: number): Observable<Album> {
    return this._http.get<Album>(this._albumUrl);
   }
 
-  getProducts(): Observable<Product> {
-    return this._http.get<Product>(this._productUrl);
+  getProducts(): Observable<Product[]> {
+    return this._http.get<Product>(this._productsUrl).map(response => <Product[]>response.json());
   }
 }
